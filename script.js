@@ -5,14 +5,14 @@
 const skills = [
     "Java Full Stack Developer",
     "Java Developer",
-    "Spring Boot Developer",
+    "Spring Boot ",
     "Hibernate & JPA",
     "HTML, CSS, JavaScript",
-    "Angular Developer",
-    "React Developer",
-    "MySQL Developer",
-    "Servlet & JSP Developer",
-    "WordPress Developer"
+    "Angular",
+    "React ",
+    "MySQL r",
+    "Servlet & JSP",
+    "WordPress "
 ];
 
 let index = 0;
