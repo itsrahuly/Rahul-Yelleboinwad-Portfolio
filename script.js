@@ -1,5 +1,8 @@
 // =============================
 // TYPING ANIMATION
+function toggleMenu() {
+    document.getElementById("navLinks").classList.toggle("active");
+}
 // =============================
 
 const skills = [
