@@ -1,8 +1,5 @@
 // =============================
 // TYPING ANIMATION
-function toggleMenu() {
-    document.getElementById("navLinks").classList.toggle("active");
-}
 // =============================
 
 const skills = [
@@ -13,7 +10,7 @@ const skills = [
     "HTML, CSS, JavaScript",
     "Angular",
     "React ",
-    "MySQL r",
+    "MySQL ",
     "Servlet & JSP",
     "WordPress "
 ];
@@ -215,40 +212,3 @@ document.getElementById("year")
 .textContent =
 new Date().getFullYear();
 
-//new update 7-9-2026
-
-.menu-toggle {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-.close-btn {
-    font-size: 30px;
-    text-align: right;
-    cursor: pointer;
-    list-style: none;
-}
-
-@media(max-width:768px) {
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 250px;
-        height: 100vh;
-        background: white;
-        flex-direction: column;
-        transition: 0.3s;
-        padding-top: 50px;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-}
