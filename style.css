@@ -746,3 +746,41 @@ textarea:focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
+// left side toggle button in navbar
+
+/* ==========================================
+   MOBILE & TABLET - LEFT HAMBURGER POSITION
+========================================== */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 15px;
+    }
+
+    /* Move hamburger to the left */
+    .menu-btn {
+        display: inline-flex;
+        order: -1;
+        position: relative;
+        z-index: 1003;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    /* Keep logo after hamburger */
+    .logo {
+        order: 0;
+        min-width: 0;
+    }
+
+    /* Hide hamburger when navigation is open */
+    body.menu-open .menu-btn {
+        display: none !important;
+    }
+
+}
