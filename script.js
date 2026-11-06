@@ -193,57 +193,68 @@ fetch(
     `;
 });
 
-// =============================
-// RESPONSIVE NAVIGATION MENU
-// =============================
+// =====================================
+// RESPONSIVE NAVIGATION FUNCTIONALITY
+// =====================================
 
 const menuBtn = document.getElementById("menuBtn");
 const closeMenu = document.getElementById("closeMenu");
 const navLinks = document.getElementById("navLinks");
 
-// Open menu
-menuBtn.addEventListener("click", () => {
+function openNavigation() {
     navLinks.classList.add("active");
     menuBtn.setAttribute("aria-expanded", "true");
-});
+    document.body.classList.add("menu-open");
+}
 
-// Close menu
-closeMenu.addEventListener("click", () => {
+function closeNavigation() {
     navLinks.classList.remove("active");
     menuBtn.setAttribute("aria-expanded", "false");
-});
+    document.body.classList.remove("menu-open");
+}
 
-// Close menu after clicking navigation links
+// Open menu
+menuBtn.addEventListener("click", openNavigation);
+
+// Close menu
+closeMenu.addEventListener("click", closeNavigation);
+
+// Close after selecting any navigation link
 navLinks.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("active");
-        menuBtn.setAttribute("aria-expanded", "false");
-    });
+    link.addEventListener("click", closeNavigation);
 });
 
-// Close menu when clicking outside
-document.addEventListener("click", (event) => {
+// Close when clicking outside
+document.addEventListener("click", function(event) {
 
     if (
         navLinks.classList.contains("active") &&
         !navLinks.contains(event.target) &&
         !menuBtn.contains(event.target)
     ) {
-        navLinks.classList.remove("active");
-        menuBtn.setAttribute("aria-expanded", "false");
+        closeNavigation();
     }
 
 });
 
-// Close menu using Escape key
-document.addEventListener("keydown", (event) => {
+// Close using Escape key
+document.addEventListener("keydown", function(event) {
 
     if (event.key === "Escape") {
-        navLinks.classList.remove("active");
-        menuBtn.setAttribute("aria-expanded", "false");
+        closeNavigation();
     }
 
 });
+
+// Close if resized to desktop
+window.addEventListener("resize", function() {
+
+    if (window.innerWidth > 991) {
+        closeNavigation();
+    }
+
+});
+
 
 
 // ================= CURRENT YEAR =================
