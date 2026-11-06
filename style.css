@@ -678,3 +678,166 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
+
+/* ==========================================
+   15. MOBILE MENU OVERLAY & CLOSE BUTTON
+========================================== */
+
+/* Desktop navigation defaults */
+
+.menu-overlay {
+    display: none;
+}
+
+.close-menu-item {
+    display: none;
+}
+
+.close-menu-btn {
+    border: none;
+    background: transparent;
+    color: #111827;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+.close-menu-btn:hover {
+    color: #6c63ff;
+    background: #f3f2ff;
+}
+
+
+/* Mobile navigation */
+
+@media (max-width: 900px) {
+
+    /* Navigation overlay */
+
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+
+        background: rgba(0, 0, 0, 0.55);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: opacity 0.3s ease,
+                    visibility 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+
+    /* Navigation panel */
+
+    .nav-links {
+        z-index: 1002;
+    }
+
+
+    /* Close button container */
+
+    .close-menu-item {
+        display: block !important;
+        width: 100%;
+        text-align: right;
+    }
+
+    .close-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+    }
+
+
+    /* Open menu button */
+
+    .menu-btn {
+        z-index: 1003;
+    }
+
+
+    /* Prevent background scrolling */
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+}
+
+
+/* ==========================================
+   16. BUTTON & LINK ACCESSIBILITY
+========================================== */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #6c63ff;
+    outline-offset: 3px;
+}
+
+
+/* ==========================================
+   17. PROJECT CARD IMPROVEMENTS
+========================================== */
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.project-card .btn {
+    margin-top: auto;
+}
+
+.project-language {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   18. MOBILE IMAGE IMPROVEMENTS
+========================================== */
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================
+   19. REDUCED MOTION SUPPORT
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
+
