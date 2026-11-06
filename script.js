@@ -16,7 +16,7 @@ const skills = [
     "HTML, CSS & JavaScript",
     "Angular Developer",
     "React Developer",
-    "MySQL",
+    "MySQL Developer",
     "Servlet & JSP",
     "WordPress Developer"
 ];
@@ -33,23 +33,23 @@ function typeEffect() {
 
     const currentSkill = skills[skillIndex];
 
-    // Increase or decrease character count
+    // Type or delete characters
     charIndex += isDeleting ? -1 : 1;
 
     typingElement.textContent =
         currentSkill.substring(0, charIndex);
 
-    let delay = isDeleting ? 50 : 100;
+    let delay = isDeleting ? 45 : 90;
 
-    // When typing is complete
+    // Full text displayed
     if (!isDeleting && charIndex === currentSkill.length) {
 
         isDeleting = true;
-        delay = 1500;
+        delay = 1800;
 
     }
 
-    // When deleting is complete
+    // Text completely deleted
     else if (isDeleting && charIndex === 0) {
 
         isDeleting = false;
@@ -73,7 +73,13 @@ if (typingElement) {
 ========================================== */
 
 const menuBtn = document.getElementById("menuBtn");
+
+const closeMenuBtn = document.getElementById("closeMenuBtn");
+
 const navLinks = document.getElementById("navLinks");
+
+const menuOverlay = document.getElementById("menuOverlay");
+
 
 function openNavigation() {
 
@@ -81,9 +87,11 @@ function openNavigation() {
 
     navLinks.classList.add("active");
 
-    document.body.classList.add("menu-open");
+    if (menuOverlay) {
+        menuOverlay.classList.add("active");
+    }
 
-    menuBtn.textContent = "×";
+    document.body.classList.add("menu-open");
 
     menuBtn.setAttribute("aria-expanded", "true");
 
@@ -91,15 +99,18 @@ function openNavigation() {
 
 }
 
+
 function closeNavigation() {
 
     if (!menuBtn || !navLinks) return;
 
     navLinks.classList.remove("active");
 
-    document.body.classList.remove("menu-open");
+    if (menuOverlay) {
+        menuOverlay.classList.remove("active");
+    }
 
-    menuBtn.textContent = "☰";
+    document.body.classList.remove("menu-open");
 
     menuBtn.setAttribute("aria-expanded", "false");
 
@@ -108,94 +119,64 @@ function closeNavigation() {
 }
 
 
-// Toggle mobile menu
-if (menuBtn && navLinks) {
+// Open menu
+if (menuBtn) {
 
-    menuBtn.setAttribute("role", "button");
+    menuBtn.addEventListener("click", openNavigation);
 
-    menuBtn.setAttribute("tabindex", "0");
-
-    menuBtn.setAttribute("aria-expanded", "false");
-
-    menuBtn.setAttribute("aria-label", "Open navigation");
-
-    menuBtn.addEventListener("click", function () {
-
-        if (navLinks.classList.contains("active")) {
-
-            closeNavigation();
-
-        } else {
-
-            openNavigation();
-
-        }
-
-    });
+}
 
 
-    // Keyboard accessibility
-    menuBtn.addEventListener("keydown", function (event) {
+// Close menu
+if (closeMenuBtn) {
 
-        if (event.key === "Enter" || event.key === " ") {
+    closeMenuBtn.addEventListener("click", closeNavigation);
 
-            event.preventDefault();
-
-            menuBtn.click();
-
-        }
-
-    });
+}
 
 
-    // Close menu after clicking navigation links
+// Close menu when clicking overlay
+if (menuOverlay) {
+
+    menuOverlay.addEventListener("click", closeNavigation);
+
+}
+
+
+// Close menu after clicking navigation links
+if (navLinks) {
+
     navLinks.querySelectorAll("a").forEach(link => {
 
         link.addEventListener("click", closeNavigation);
 
     });
 
-
-    // Close menu when clicking outside
-    document.addEventListener("click", function (event) {
-
-        if (
-            navLinks.classList.contains("active") &&
-            !navLinks.contains(event.target) &&
-            !menuBtn.contains(event.target)
-        ) {
-
-            closeNavigation();
-
-        }
-
-    });
-
-
-    // Close menu using Escape key
-    document.addEventListener("keydown", function (event) {
-
-        if (event.key === "Escape") {
-
-            closeNavigation();
-
-        }
-
-    });
-
-
-    // Close mobile menu when switching to desktop
-    window.addEventListener("resize", function () {
-
-        if (window.innerWidth > 991) {
-
-            closeNavigation();
-
-        }
-
-    });
-
 }
+
+
+// Close menu using Escape key
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape") {
+
+        closeNavigation();
+
+    }
+
+});
+
+
+// Close menu when switching to desktop
+window.addEventListener("resize", function () {
+
+    if (window.innerWidth > 991) {
+
+        closeNavigation();
+
+    }
+
+});
 
 
 /* ==========================================
@@ -219,7 +200,7 @@ if (contactForm) {
         const message = document.getElementById("message").value.trim();
 
 
-        // Validate empty fields
+        // Check empty fields
         if (!name || !email || !subject || !message) {
 
             alert("Please fill in all fields.");
@@ -229,9 +210,22 @@ if (contactForm) {
         }
 
 
-        // Prepare email details
+        // Validate email format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+
+            alert("Please enter a valid email address.");
+
+            return;
+
+        }
+
+
+        // Prepare email subject
         const mailSubject = encodeURIComponent(subject);
 
+        // Prepare email body
         const mailBody = encodeURIComponent(
             "Name: " + name +
             "\nEmail: " + email +
@@ -239,7 +233,7 @@ if (contactForm) {
         );
 
 
-        // Create email link
+        // Create mailto URL
         const mailtoLink =
             "mailto:rahulyelleboinwad@gmail.com" +
             "?subject=" + mailSubject +
@@ -268,20 +262,34 @@ async function loadGitHubProjects() {
 
     if (!githubContainer) return;
 
-    // Show loading message
     githubContainer.textContent = "Loading Projects...";
 
     try {
 
         const response = await fetch(
-            `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100`
+            `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100`,
+            {
+                headers: {
+                    "Accept": "application/vnd.github+json"
+                }
+            }
         );
 
 
         // Check API response
         if (!response.ok) {
 
-            throw new Error("Unable to fetch GitHub repositories.");
+            if (response.status === 403) {
+
+                throw new Error(
+                    "GitHub API rate limit exceeded. Please try again later."
+                );
+
+            }
+
+            throw new Error(
+                `GitHub API error: ${response.status}`
+            );
 
         }
 
@@ -289,12 +297,20 @@ async function loadGitHubProjects() {
         const repos = await response.json();
 
 
-        // Remove forked repositories
+        // Filter repositories
         const projects = repos
-            .filter(repo => !repo.fork)
-            .sort((a, b) =>
-                new Date(b.updated_at) - new Date(a.updated_at)
+
+            .filter(repo =>
+                !repo.fork &&
+                !repo.archived &&
+                !repo.disabled
             )
+
+            .sort((a, b) =>
+                new Date(b.updated_at) -
+                new Date(a.updated_at)
+            )
+
             .slice(0, 6);
 
 
@@ -302,11 +318,11 @@ async function loadGitHubProjects() {
         githubContainer.replaceChildren();
 
 
-        // Check available projects
+        // Check projects
         if (projects.length === 0) {
 
             githubContainer.textContent =
-                "No projects available.";
+                "No public projects available.";
 
             return;
 
@@ -331,16 +347,18 @@ async function loadGitHubProjects() {
             const description = document.createElement("p");
 
             description.textContent =
-                repo.description || "No description available.";
+                repo.description ||
+                "Explore this project on GitHub.";
 
 
-            // Programming language
+            // Technology
             const language = document.createElement("p");
 
             language.className = "project-language";
 
             language.textContent =
-                "Technology: " + (repo.language || "Not specified");
+                "Technology: " +
+                (repo.language || "Not specified");
 
 
             // GitHub link
@@ -357,7 +375,7 @@ async function loadGitHubProjects() {
             link.textContent = "View on GitHub";
 
 
-            // Add elements to card
+            // Append elements
             card.appendChild(title);
 
             card.appendChild(description);
@@ -367,7 +385,7 @@ async function loadGitHubProjects() {
             card.appendChild(link);
 
 
-            // Add card to projects section
+            // Add card
             githubContainer.appendChild(card);
 
         });
@@ -380,6 +398,23 @@ async function loadGitHubProjects() {
 
         githubContainer.textContent =
             "Unable to load projects. Please visit my GitHub profile.";
+
+        // Create fallback GitHub link
+        const githubLink = document.createElement("a");
+
+        githubLink.href =
+            `https://github.com/${githubUsername}`;
+
+        githubLink.target = "_blank";
+
+        githubLink.rel = "noopener noreferrer";
+
+        githubLink.className = "btn outline";
+
+        githubLink.textContent = "Visit My GitHub";
+
+
+        githubContainer.appendChild(githubLink);
 
     }
 
