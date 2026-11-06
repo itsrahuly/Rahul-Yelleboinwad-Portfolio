@@ -841,3 +841,15 @@ textarea:focus-visible {
 
 }
 
+/* Hide hamburger button when mobile navigation is open */
+@media (max-width: 900px) {
+    body.menu-open .menu-btn {
+        display: none !important;
+    }
+
+    /* Keep close button visible inside navigation */
+    body.menu-open .close-menu-btn {
+        display: flex !important;
+    }
+}
+
