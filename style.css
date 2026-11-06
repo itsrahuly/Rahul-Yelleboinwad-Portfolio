@@ -617,3 +617,201 @@ footer{
         justify-content:center;
     }
 }
+
+/* =====================================
+   FINAL RESPONSIVE NAVIGATION DESIGN
+===================================== */
+
+/* Desktop Navigation */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+/* Hide close button on desktop */
+
+.close-menu-item {
+    display: none;
+}
+
+/* Hamburger Button */
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 32px;
+    color: #222;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* Close Button */
+
+.close-menu {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent !important;
+    border: none !important;
+    outline: none;
+    color: #222 !important;
+    font-size: 36px !important;
+    font-weight: 400;
+    line-height: 1;
+    padding: 5px 10px;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+.close-menu:hover {
+    color: #6c63ff !important;
+    transform: rotate(90deg);
+}
+
+/* =====================================
+   TABLET AND MOBILE NAVIGATION
+===================================== */
+
+@media (max-width: 991px) {
+
+    .navbar {
+        padding: 18px 5%;
+    }
+
+    .menu-btn {
+        display: block;
+        z-index: 1002;
+    }
+
+    /* Navigation Drawer */
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        width: 320px;
+        max-width: 85%;
+        height: 100vh;
+        height: 100dvh;
+
+        background: #ffffff;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: flex-start;
+        align-items: stretch;
+
+        gap: 0;
+
+        padding: 90px 25px 30px;
+
+        box-shadow: -10px 0 35px rgba(0,0,0,0.12);
+
+        z-index: 1001;
+
+        transform: translateX(110%);
+        visibility: hidden;
+
+        transition:
+            transform 0.35s ease,
+            visibility 0.35s ease;
+
+        overflow-y: auto;
+    }
+
+    /* Open Drawer */
+
+    .nav-links.active {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    /* Close Button Container */
+
+    .close-menu-item {
+        display: block;
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: auto;
+    }
+
+    .close-menu {
+        display: block;
+    }
+
+    /* Navigation Links */
+
+    .nav-links li:not(.close-menu-item) {
+        width: 100%;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+
+    .nav-links li a:not(.resume-btn) {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 19px;
+        color: #222;
+        transition: 0.3s;
+    }
+
+    .nav-links li a:not(.resume-btn):hover {
+        background: #f0efff;
+        color: #6255f5;
+    }
+
+    /* Resume Button */
+
+    .nav-links .resume-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 8px;
+    }
+
+}
+
+/* Small Mobile Devices */
+
+@media (max-width: 480px) {
+
+    .navbar {
+        padding: 15px 4%;
+    }
+
+    .logo h2 {
+        font-size: 19px;
+    }
+
+    .menu-btn {
+        font-size: 29px;
+    }
+
+    .nav-links {
+        width: 290px;
+        max-width: 85%;
+    }
+
+}
