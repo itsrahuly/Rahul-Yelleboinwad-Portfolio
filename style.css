@@ -818,3 +818,33 @@ footer{
 body.menu-open {
     overflow: hidden;
 }
+
+/* Hide hamburger when navigation drawer is open */
+
+body.menu-open .menu-btn {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Close button inside navigation drawer */
+
+.close-menu-item {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.close-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    font-size: 32px !important;
+    border-radius: 50%;
+}
+
+.close-menu:hover {
+    background: #f0efff !important;
+}
