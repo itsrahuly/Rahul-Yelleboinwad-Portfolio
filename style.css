@@ -1,16 +1,16 @@
 /* =========================================================
-   RAHUL YELLEBOINWAD - PORTFOLIO STYLESHEET
-   Clean, responsive CSS
+   RAHUL YELLEBOINWAD | PORTFOLIO
+   Responsive stylesheet
    ========================================================= */
 
-/* 1. GLOBAL RESET AND BASE STYLES
---------------------------------------------------------- */
+/* 1. Reset and base
+   ========================================================= */
 *,
 *::before,
 *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -22,8 +22,8 @@ body {
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
     color: #222;
+    font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #f8f9ff, #ececff);
 }
 
@@ -47,19 +47,19 @@ textarea {
     font: inherit;
 }
 
-/* 2. NAVIGATION BAR
---------------------------------------------------------- */
+/* 2. Navigation
+   ========================================================= */
 .navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
-    min-height: 85px;
-    padding: 15px 7%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    width: 100%;
+    min-height: 85px;
+    padding: 15px 7%;
     background: rgba(255, 255, 255, 0.97);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(12px);
@@ -106,8 +106,11 @@ textarea {
     background: linear-gradient(135deg, #6c63ff, #4f46e5);
 }
 
-.menu-btn {
+.menu-btn,
+.close-menu-btn {
     display: none;
+    align-items: center;
+    justify-content: center;
     width: 44px;
     height: 44px;
     padding: 0;
@@ -115,21 +118,29 @@ textarea {
     border-radius: 8px;
     color: #111827;
     background: transparent;
-    font-size: 30px;
+    font-size: 28px;
     line-height: 1;
     cursor: pointer;
 }
 
-/* 3. HERO SECTION
---------------------------------------------------------- */
+.menu-overlay {
+    display: none;
+}
+
+.close-menu-item {
+    display: none;
+}
+
+/* 3. Hero
+   ========================================================= */
 .hero-section {
-    width: 100%;
-    min-height: calc(100vh - 85px);
-    padding: 70px 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 60px;
+    width: 100%;
+    min-height: calc(100vh - 85px);
+    padding: 70px 8%;
 }
 
 .hero-content,
@@ -157,17 +168,17 @@ textarea {
 }
 
 .hero-buttons {
-    margin-top: 35px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    margin-top: 35px;
 }
 
 .hero-image {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .hero-image img {
@@ -177,8 +188,8 @@ textarea {
     object-fit: cover;
 }
 
-/* 4. REUSABLE BUTTONS
---------------------------------------------------------- */
+/* 4. Buttons
+   ========================================================= */
 .btn {
     display: inline-block;
     padding: 14px 30px;
@@ -208,8 +219,8 @@ textarea {
     background: #6c63ff;
 }
 
-/* 5. ABOUT SECTION
---------------------------------------------------------- */
+/* 5. About
+   ========================================================= */
 .about-section {
     width: 90%;
     max-width: 1100px;
@@ -244,8 +255,8 @@ textarea {
     padding-left: 25px;
 }
 
-/* 6. SECTION HEADINGS
---------------------------------------------------------- */
+/* 6. Shared section headings
+   ========================================================= */
 .skills-section h1,
 .projects-section h1,
 .contact-section h1 {
@@ -255,8 +266,8 @@ textarea {
     text-align: center;
 }
 
-/* 7. SKILLS SECTION
---------------------------------------------------------- */
+/* 7. Skills
+   ========================================================= */
 .skills-section {
     padding: 80px 8%;
 }
@@ -289,8 +300,8 @@ textarea {
     line-height: 1.7;
 }
 
-/* 8. PROJECTS SECTION
---------------------------------------------------------- */
+/* 8. Projects
+   ========================================================= */
 .projects-section {
     padding: 80px 8%;
 }
@@ -309,6 +320,9 @@ textarea {
 }
 
 .project-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     min-width: 0;
     padding: 30px;
     overflow-wrap: anywhere;
@@ -333,8 +347,17 @@ textarea {
     line-height: 1.7;
 }
 
-/* 9. CONTACT SECTION
---------------------------------------------------------- */
+.project-card .btn {
+    margin-top: auto;
+}
+
+.project-language {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+/* 9. Contact
+   ========================================================= */
 .contact-section {
     padding: 80px 8%;
 }
@@ -380,16 +403,16 @@ textarea {
     resize: vertical;
 }
 
-/* 10. FOOTER
---------------------------------------------------------- */
+/* 10. Footer
+   ========================================================= */
 footer {
-    margin-top: 60px;
-    padding: 60px 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 35px;
+    margin-top: 60px;
+    padding: 60px 8%;
     color: #fff;
     background: #130c29;
 }
@@ -426,11 +449,11 @@ footer {
 }
 
 .social-icons a {
-    width: 55px;
-    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     color: #fff;
     background: rgba(255, 255, 255, 0.1);
@@ -443,8 +466,8 @@ footer {
     background: #6c63ff;
 }
 
-/* 11. TABLET LAYOUT
---------------------------------------------------------- */
+/* 11. Tablet and smaller desktop
+   ========================================================= */
 @media (max-width: 1024px) {
     .navbar {
         padding-right: 5%;
@@ -456,9 +479,9 @@ footer {
     }
 
     .hero-section {
+        gap: 35px;
         padding-right: 5%;
         padding-left: 5%;
-        gap: 35px;
     }
 
     .hero-content h1 {
@@ -475,15 +498,31 @@ footer {
     }
 }
 
-/* 12. MOBILE NAVIGATION AND TABLET HERO
---------------------------------------------------------- */
+/* 12. Mobile and tablet navigation
+   ========================================================= */
 @media (max-width: 900px) {
     .menu-btn {
-        position: relative;
-        z-index: 1001;
         display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        position: relative;
+        z-index: 1003;
+    }
+
+    .menu-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1001;
+        background: rgba(0, 0, 0, 0.55);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
 
     .nav-links {
@@ -491,15 +530,15 @@ footer {
         top: 0;
         right: 0;
         z-index: 1002;
-        width: min(340px, 85vw);
-        height: 100vh;
-        height: 100dvh;
-        padding: 100px 25px 35px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
         gap: 8px;
+        width: min(340px, 85vw);
+        height: 100vh;
+        height: 100dvh;
+        padding: 25px 25px 35px;
         overflow-y: auto;
         background: #fff;
         box-shadow: -12px 0 35px rgba(0, 0, 0, 0.14);
@@ -527,15 +566,32 @@ footer {
         font-size: 18px;
     }
 
+    .close-menu-item {
+        display: block;
+        text-align: right;
+    }
+
+    .close-menu-btn {
+        display: inline-flex;
+    }
+
+    /* Hide the hamburger while the drawer is open.
+       JavaScript adds/removes body.menu-open. */
+    body.menu-open .menu-btn {
+        display: none;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
     .nav-links .resume-btn {
         margin-top: 8px;
     }
 
     .hero-section {
         min-height: auto;
-        padding: 60px 6%;
         flex-direction: column-reverse;
         gap: 35px;
+        padding: 60px 6%;
         text-align: center;
     }
 
@@ -573,8 +629,8 @@ footer {
     }
 }
 
-/* 13. SMALL MOBILE
---------------------------------------------------------- */
+/* 13. Small mobile
+   ========================================================= */
 @media (max-width: 600px) {
     html {
         scroll-padding-top: 75px;
@@ -666,122 +722,8 @@ footer {
     }
 }
 
-/* 14. ACCESSIBILITY: REDUCED MOTION
---------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* ==========================================
-   15. MOBILE MENU OVERLAY & CLOSE BUTTON
-========================================== */
-
-/* Desktop navigation defaults */
-
-.menu-overlay {
-    display: none;
-}
-
-.close-menu-item {
-    display: none;
-}
-
-.close-menu-btn {
-    border: none;
-    background: transparent;
-    color: #111827;
-    font-size: 28px;
-    cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
-.close-menu-btn:hover {
-    color: #6c63ff;
-    background: #f3f2ff;
-}
-
-
-/* Mobile navigation */
-
-@media (max-width: 900px) {
-
-    /* Navigation overlay */
-
-    .menu-overlay {
-        display: block;
-        position: fixed;
-        inset: 0;
-        z-index: 1001;
-
-        background: rgba(0, 0, 0, 0.55);
-
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-
-        transition: opacity 0.3s ease,
-                    visibility 0.3s ease;
-    }
-
-    .menu-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-
-    /* Navigation panel */
-
-    .nav-links {
-        z-index: 1002;
-    }
-
-
-    /* Close button container */
-
-    .close-menu-item {
-        display: block !important;
-        width: 100%;
-        text-align: right;
-    }
-
-    .close-menu-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 44px;
-        height: 44px;
-    }
-
-
-    /* Open menu button */
-
-    .menu-btn {
-        z-index: 1003;
-    }
-
-
-    /* Prevent background scrolling */
-
-    body.menu-open {
-        overflow: hidden;
-    }
-
-}
-
-
-/* ==========================================
-   16. BUTTON & LINK ACCESSIBILITY
-========================================== */
-
+/* 14. Keyboard focus and motion accessibility
+   ========================================================= */
 button:focus-visible,
 a:focus-visible,
 input:focus-visible,
@@ -790,43 +732,7 @@ textarea:focus-visible {
     outline-offset: 3px;
 }
 
-
-/* ==========================================
-   17. PROJECT CARD IMPROVEMENTS
-========================================== */
-
-.project-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.project-card .btn {
-    margin-top: auto;
-}
-
-.project-language {
-    color: #4f46e5;
-    font-weight: 600;
-}
-
-
-/* ==========================================
-   18. MOBILE IMAGE IMPROVEMENTS
-========================================== */
-
-.hero-image img {
-    max-width: 100%;
-    height: auto;
-}
-
-
-/* ==========================================
-   19. REDUCED MOTION SUPPORT
-========================================== */
-
 @media (prefers-reduced-motion: reduce) {
-
     html {
         scroll-behavior: auto;
     }
@@ -837,15 +743,5 @@ textarea:focus-visible {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-    }
-
-}
-
-/* Hide hamburger when mobile navigation is open */
-@media (max-width: 900px) {
-    body:has(.nav-links.active) .menu-btn {
-        display: none !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
     }
 }
