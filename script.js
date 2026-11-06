@@ -192,19 +192,59 @@ fetch(
     </p>
     `;
 });
-// MOBILE MENU
 
-const menuBtn =
-document.getElementById("menuBtn");
+// =============================
+// RESPONSIVE NAVIGATION MENU
+// =============================
 
-const navLinks =
-document.getElementById("navLinks");
+const menuBtn = document.getElementById("menuBtn");
+const closeMenu = document.getElementById("closeMenu");
+const navLinks = document.getElementById("navLinks");
 
-menuBtn.addEventListener(
-"click",
-() => {
-    navLinks.classList.toggle("active");
+// Open menu
+menuBtn.addEventListener("click", () => {
+    navLinks.classList.add("active");
+    menuBtn.setAttribute("aria-expanded", "true");
 });
+
+// Close menu
+closeMenu.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    menuBtn.setAttribute("aria-expanded", "false");
+});
+
+// Close menu after clicking navigation links
+navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener("click", (event) => {
+
+    if (
+        navLinks.classList.contains("active") &&
+        !navLinks.contains(event.target) &&
+        !menuBtn.contains(event.target)
+    ) {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+});
+
+// Close menu using Escape key
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+        navLinks.classList.remove("active");
+        menuBtn.setAttribute("aria-expanded", "false");
+    }
+
+});
+
 
 // ================= CURRENT YEAR =================
 
