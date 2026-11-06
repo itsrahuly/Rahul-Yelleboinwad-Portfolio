@@ -13,15 +13,24 @@
 </head>
 <body>
 
+
 <nav class="navbar">
 
     <div class="logo">
-    <h2><a href="#home">RAHUL YELLEBOINWAD</a></h2>
+        <h2><a href="#home">RAHUL YELLEBOINWAD</a></h2>
     </div>
 
-    <!-- MENU -->
-
+    <!-- NAVIGATION MENU -->
     <ul class="nav-links" id="navLinks">
+
+        <!-- CLOSE BUTTON -->
+        <li class="close-menu-item">
+            <button class="close-menu" id="closeMenu"
+                    aria-label="Close navigation">
+                &times;
+            </button>
+        </li>
+
         <li><a href="#about">About Me</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -31,18 +40,21 @@
             <a href="resume/Rahul_Resume.pdf"
                target="_blank"
                class="resume-btn">
-               Resume
+                Resume
             </a>
         </li>
+
     </ul>
 
-    <!-- MOBILE MENU ICON -->
-
-    <div class="menu-btn" id="menuBtn">
+    <!-- HAMBURGER BUTTON -->
+    <button class="menu-btn" id="menuBtn"
+            aria-label="Open navigation"
+            aria-expanded="false">
         ☰
-    </div>
+    </button>
 
 </nav>
+
 
     <!-- ================= HERO SECTION ================= -->
 
