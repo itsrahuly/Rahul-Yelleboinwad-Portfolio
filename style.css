@@ -505,6 +505,7 @@ footer {
         display: inline-flex;
         position: relative;
         z-index: 1003;
+       margin-left: auto;
     }
 
     .menu-overlay {
