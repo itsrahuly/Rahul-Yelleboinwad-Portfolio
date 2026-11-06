@@ -1,22 +1,22 @@
 
-/* =====================================
-   PORTFOLIO JAVASCRIPT
-===================================== */
+/* ==========================================
+   RAHUL YELLEBOINWAD - PORTFOLIO JAVASCRIPT
+========================================== */
 
 
-/* =====================================
+/* ==========================================
    1. TYPING ANIMATION
-===================================== */
+========================================== */
 
 const skills = [
     "Java Full Stack Developer",
     "Java Developer",
     "Spring Boot Developer",
     "Hibernate & JPA",
-    "HTML, CSS, JavaScript",
+    "HTML, CSS & JavaScript",
     "Angular Developer",
     "React Developer",
-    "MySQL Developer",
+    "MySQL",
     "Servlet & JSP",
     "WordPress Developer"
 ];
@@ -33,27 +33,24 @@ function typeEffect() {
 
     const currentSkill = skills[skillIndex];
 
-    if (isDeleting) {
-
-        charIndex--;
-
-    } else {
-
-        charIndex++;
-
-    }
+    // Increase or decrease character count
+    charIndex += isDeleting ? -1 : 1;
 
     typingElement.textContent =
         currentSkill.substring(0, charIndex);
 
-    let delay = isDeleting ? 45 : 100;
+    let delay = isDeleting ? 50 : 100;
 
+    // When typing is complete
     if (!isDeleting && charIndex === currentSkill.length) {
 
-        delay = 1500;
         isDeleting = true;
+        delay = 1500;
 
-    } else if (isDeleting && charIndex === 0) {
+    }
+
+    // When deleting is complete
+    else if (isDeleting && charIndex === 0) {
 
         isDeleting = false;
 
@@ -66,41 +63,43 @@ function typeEffect() {
     setTimeout(typeEffect, delay);
 }
 
-typeEffect();
-
-
-/* =====================================
-   2. RESPONSIVE NAVIGATION
-===================================== */
-
-const menuBtn = document.getElementById("menuBtn");
-const closeMenu = document.getElementById("closeMenu");
-const navLinks = document.getElementById("navLinks");
-const navOverlay = document.getElementById("navOverlay");
-
-
-function openNavigation() {
-
-    navLinks.classList.add("active");
-
-    navOverlay.classList.add("active");
-
-    document.body.classList.add("menu-open");
-
-    menuBtn.setAttribute("aria-expanded", "true");
-
-    menuBtn.setAttribute("aria-label", "Navigation menu open");
-
+if (typingElement) {
+    typeEffect();
 }
 
 
+/* ==========================================
+   2. RESPONSIVE MOBILE NAVIGATION
+========================================== */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+function openNavigation() {
+
+    if (!menuBtn || !navLinks) return;
+
+    navLinks.classList.add("active");
+
+    document.body.classList.add("menu-open");
+
+    menuBtn.textContent = "×";
+
+    menuBtn.setAttribute("aria-expanded", "true");
+
+    menuBtn.setAttribute("aria-label", "Close navigation");
+
+}
+
 function closeNavigation() {
+
+    if (!menuBtn || !navLinks) return;
 
     navLinks.classList.remove("active");
 
-    navOverlay.classList.remove("active");
-
     document.body.classList.remove("menu-open");
+
+    menuBtn.textContent = "☰";
 
     menuBtn.setAttribute("aria-expanded", "false");
 
@@ -109,69 +108,99 @@ function closeNavigation() {
 }
 
 
-// Open menu
-menuBtn.addEventListener("click", function () {
+// Toggle mobile menu
+if (menuBtn && navLinks) {
 
-    if (navLinks.classList.contains("active")) {
+    menuBtn.setAttribute("role", "button");
 
-        closeNavigation();
+    menuBtn.setAttribute("tabindex", "0");
 
-    } else {
+    menuBtn.setAttribute("aria-expanded", "false");
 
-        openNavigation();
+    menuBtn.setAttribute("aria-label", "Open navigation");
 
-    }
+    menuBtn.addEventListener("click", function () {
 
-});
+        if (navLinks.classList.contains("active")) {
 
+            closeNavigation();
 
-// Close button
-closeMenu.addEventListener("click", closeNavigation);
+        } else {
 
+            openNavigation();
 
-// Close when clicking outside
-navOverlay.addEventListener("click", closeNavigation);
-
-
-// Close after clicking navigation links
-navLinks.querySelectorAll("a").forEach(function (link) {
-
-    link.addEventListener("click", function () {
-
-        closeNavigation();
+        }
 
     });
 
-});
+
+    // Keyboard accessibility
+    menuBtn.addEventListener("keydown", function (event) {
+
+        if (event.key === "Enter" || event.key === " ") {
+
+            event.preventDefault();
+
+            menuBtn.click();
+
+        }
+
+    });
 
 
-// Close using Escape key
-document.addEventListener("keydown", function (event) {
+    // Close menu after clicking navigation links
+    navLinks.querySelectorAll("a").forEach(link => {
 
-    if (event.key === "Escape") {
+        link.addEventListener("click", closeNavigation);
 
-        closeNavigation();
-
-    }
-
-});
+    });
 
 
-// Reset navigation when switching to desktop
-window.addEventListener("resize", function () {
+    // Close menu when clicking outside
+    document.addEventListener("click", function (event) {
 
-    if (window.innerWidth > 991) {
+        if (
+            navLinks.classList.contains("active") &&
+            !navLinks.contains(event.target) &&
+            !menuBtn.contains(event.target)
+        ) {
 
-        closeNavigation();
+            closeNavigation();
 
-    }
+        }
 
-});
+    });
 
 
-/* =====================================
+    // Close menu using Escape key
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            closeNavigation();
+
+        }
+
+    });
+
+
+    // Close mobile menu when switching to desktop
+    window.addEventListener("resize", function () {
+
+        if (window.innerWidth > 991) {
+
+            closeNavigation();
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
    3. CONTACT FORM
-===================================== */
+========================================== */
 
 const contactForm = document.getElementById("contactForm");
 
@@ -181,36 +210,43 @@ if (contactForm) {
 
         event.preventDefault();
 
-        const name =
-            document.getElementById("name").value.trim();
+        const name = document.getElementById("name").value.trim();
 
-        const email =
-            document.getElementById("email").value.trim();
+        const email = document.getElementById("email").value.trim();
 
-        const subject =
-            document.getElementById("subject").value.trim();
+        const subject = document.getElementById("subject").value.trim();
 
-        const message =
-            document.getElementById("message").value.trim();
+        const message = document.getElementById("message").value.trim();
 
 
+        // Validate empty fields
+        if (!name || !email || !subject || !message) {
+
+            alert("Please fill in all fields.");
+
+            return;
+
+        }
+
+
+        // Prepare email details
         const mailSubject = encodeURIComponent(subject);
 
         const mailBody = encodeURIComponent(
-
             "Name: " + name +
             "\nEmail: " + email +
             "\n\nMessage:\n" + message
-
         );
 
 
+        // Create email link
         const mailtoLink =
             "mailto:rahulyelleboinwad@gmail.com" +
             "?subject=" + mailSubject +
             "&body=" + mailBody;
 
 
+        // Open default email application
         window.location.href = mailtoLink;
 
     });
@@ -218,11 +254,11 @@ if (contactForm) {
 }
 
 
-/* =====================================
-   4. GITHUB PROJECTS
-===================================== */
+/* ==========================================
+   4. GITHUB PROJECTS INTEGRATION
+========================================== */
 
-const username = "itsrahuly";
+const githubUsername = "itsrahuly";
 
 const githubContainer =
     document.getElementById("github-projects");
@@ -232,27 +268,41 @@ async function loadGitHubProjects() {
 
     if (!githubContainer) return;
 
+    // Show loading message
+    githubContainer.textContent = "Loading Projects...";
+
     try {
 
         const response = await fetch(
-            `https://api.github.com/users/${username}/repos?sort=updated&per_page=100`
+            `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=100`
         );
 
+
+        // Check API response
         if (!response.ok) {
 
-            throw new Error("GitHub API request failed");
+            throw new Error("Unable to fetch GitHub repositories.");
 
         }
 
+
         const repos = await response.json();
 
-        githubContainer.innerHTML = "";
 
+        // Remove forked repositories
         const projects = repos
             .filter(repo => !repo.fork)
+            .sort((a, b) =>
+                new Date(b.updated_at) - new Date(a.updated_at)
+            )
             .slice(0, 6);
 
 
+        // Clear previous content
+        githubContainer.replaceChildren();
+
+
+        // Check available projects
         if (projects.length === 0) {
 
             githubContainer.textContent =
@@ -263,6 +313,7 @@ async function loadGitHubProjects() {
         }
 
 
+        // Create project cards
         projects.forEach(repo => {
 
             const card = document.createElement("div");
@@ -270,23 +321,29 @@ async function loadGitHubProjects() {
             card.className = "project-card";
 
 
+            // Project title
             const title = document.createElement("h3");
 
             title.textContent = repo.name;
 
 
+            // Project description
             const description = document.createElement("p");
 
             description.textContent =
-                repo.description || "No description available";
+                repo.description || "No description available.";
 
 
+            // Programming language
             const language = document.createElement("p");
+
+            language.className = "project-language";
 
             language.textContent =
                 "Technology: " + (repo.language || "Not specified");
 
 
+            // GitHub link
             const link = document.createElement("a");
 
             link.href = repo.html_url;
@@ -300,6 +357,7 @@ async function loadGitHubProjects() {
             link.textContent = "View on GitHub";
 
 
+            // Add elements to card
             card.appendChild(title);
 
             card.appendChild(description);
@@ -309,11 +367,14 @@ async function loadGitHubProjects() {
             card.appendChild(link);
 
 
+            // Add card to projects section
             githubContainer.appendChild(card);
 
         });
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error("GitHub Projects Error:", error);
 
@@ -324,12 +385,14 @@ async function loadGitHubProjects() {
 
 }
 
+
+// Load GitHub projects
 loadGitHubProjects();
 
 
-/* =====================================
-   5. CURRENT YEAR
-===================================== */
+/* ==========================================
+   5. AUTOMATIC COPYRIGHT YEAR
+========================================== */
 
 const yearElement = document.getElementById("year");
 
@@ -340,6 +403,6 @@ if (yearElement) {
 }
 
 
-/* =====================================
+/* ==========================================
    END OF PORTFOLIO JAVASCRIPT
-===================================== */
+========================================== */
