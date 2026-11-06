@@ -18,45 +18,60 @@
 <nav class="navbar">
 
     <div class="logo">
-        <h2><a href="#home">RAHUL YELLEBOINWAD</a></h2>
+        <h2>
+            <a href="#home">RAHUL YELLEBOINWAD</a>
+        </h2>
     </div>
+
+    <!-- Desktop / Mobile Menu Button -->
+    <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+        type="button">
+
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Navigation Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Navigation Links -->
     <ul class="nav-links" id="navLinks">
 
-        <li class="mobile-close">
-            <button type="button" id="closeMenu" aria-label="Close navigation">
-                &times;
+        <!-- Close Button -->
+        <li class="close-menu-item">
+            <button
+                type="button"
+                class="close-menu"
+                id="closeMenu"
+                aria-label="Close navigation">
+
+                <i class="fas fa-times"></i>
             </button>
         </li>
 
         <li><a href="#about">About Me</a></li>
+
         <li><a href="#skills">Skills</a></li>
+
         <li><a href="#projects">Projects</a></li>
+
         <li><a href="#contact">Contact</a></li>
 
         <li>
-            <a href="resume/Rahul_Resume.pdf"
-               target="_blank"
-               class="resume-btn">
+            <a
+                href="resume/Rahul_Resume.pdf"
+                target="_blank"
+                class="resume-btn">
+
                 Resume
             </a>
         </li>
 
     </ul>
-
-    <!-- Hamburger Button -->
-    <button type="button"
-            class="menu-btn"
-            id="menuBtn"
-            aria-label="Open navigation"
-            aria-expanded="false"
-            aria-controls="navLinks">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Background Overlay -->
-    <div class="nav-overlay" id="navOverlay"></div>
 
 </nav>
 
