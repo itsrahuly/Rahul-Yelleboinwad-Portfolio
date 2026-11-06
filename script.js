@@ -170,7 +170,7 @@ document.addEventListener("keydown", function (event) {
 // Close menu when switching to desktop
 window.addEventListener("resize", function () {
 
-    if (window.innerWidth > 991) {
+    if (window.innerWidth > 900) {
 
         closeNavigation();
 
