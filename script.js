@@ -235,7 +235,7 @@ if (contactForm) {
 
         // Create mailto URL
         const mailtoLink =
-            "mailto:rahulyelleboinwad@gmail.com" +
+            "mailto:yelleboinwadr@gmail.com" +
             "?subject=" + mailSubject +
             "&body=" + mailBody;
 
