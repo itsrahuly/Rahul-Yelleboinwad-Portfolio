@@ -1,9 +1,13 @@
+/* =========================================================
+   RAHUL YELLEBOINWAD - PORTFOLIO STYLESHEET
+   Clean, responsive CSS
+   ========================================================= */
 
-/* =====================================
-   GLOBAL RESET
-===================================== */
-
-* {
+/* 1. GLOBAL RESET AND BASE STYLES
+--------------------------------------------------------- */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,12 +19,12 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #f8f9ff, #ececff);
-    color: #222;
     width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: linear-gradient(to bottom, #f8f9ff, #ececff);
 }
 
 body.menu-open {
@@ -28,40 +32,49 @@ body.menu-open {
 }
 
 img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 a {
+    color: inherit;
     text-decoration: none;
 }
 
-/* =====================================
-   NAVIGATION BAR
-===================================== */
+button,
+input,
+textarea {
+    font: inherit;
+}
 
+/* 2. NAVIGATION BAR
+--------------------------------------------------------- */
 .navbar {
-    width: 100%;
-    min-height: 85px;
-    padding: 15px 7%;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
     position: sticky;
     top: 0;
     z-index: 1000;
-
+    width: 100%;
+    min-height: 85px;
+    padding: 15px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
     background: rgba(255, 255, 255, 0.97);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(12px);
 }
 
+.logo {
+    min-width: 0;
+}
+
 .logo h2 {
+    color: #111827;
     font-size: 28px;
     font-weight: 700;
-    color: #111827;
+    line-height: 1.2;
+    white-space: nowrap;
 }
 
 .logo a {
@@ -76,57 +89,61 @@ a {
 }
 
 .nav-links a {
+    display: inline-block;
     color: #222;
     font-size: 17px;
-    transition: 0.3s;
+    transition: color 0.25s ease;
 }
 
 .nav-links a:hover {
     color: #6c63ff;
 }
 
-.resume-btn {
-    display: inline-block;
+.nav-links .resume-btn {
     padding: 12px 28px;
     border-radius: 12px;
-
+    color: #fff;
     background: linear-gradient(135deg, #6c63ff, #4f46e5);
-    color: white !important;
 }
 
-.menu-btn,
-.mobile-close,
-.nav-overlay {
+.menu-btn {
     display: none;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    color: #111827;
+    background: transparent;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
 }
 
-/* =====================================
-   HERO SECTION
-===================================== */
-
+/* 3. HERO SECTION
+--------------------------------------------------------- */
 .hero-section {
     width: 100%;
     min-height: calc(100vh - 85px);
-
     padding: 70px 8%;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     gap: 60px;
 }
 
-.hero-content {
-    flex: 1;
+.hero-content,
+.hero-image {
+    flex: 1 1 0;
     min-width: 0;
 }
 
 .hero-content h1 {
+    margin-bottom: 25px;
+    color: #1d184d;
     font-size: clamp(38px, 5vw, 68px);
     line-height: 1.2;
-    color: #1d184d;
-    margin-bottom: 25px;
+    overflow-wrap: anywhere;
 }
 
 #typing-text {
@@ -134,52 +151,46 @@ a {
 }
 
 .hero-content p {
+    color: #444;
     font-size: 20px;
     line-height: 1.8;
-    color: #444;
 }
 
 .hero-buttons {
+    margin-top: 35px;
     display: flex;
     align-items: center;
-    gap: 15px;
     flex-wrap: wrap;
-    margin-top: 35px;
+    gap: 15px;
 }
 
 .hero-image {
-    flex: 1;
     display: flex;
     justify-content: center;
-    min-width: 0;
+    align-items: center;
 }
 
 .hero-image img {
-    width: 480px;
-    max-width: 100%;
+    width: min(480px, 100%);
     height: auto;
     border-radius: 28px;
     object-fit: cover;
 }
 
-/* =====================================
-   BUTTONS
-===================================== */
-
+/* 4. REUSABLE BUTTONS
+--------------------------------------------------------- */
 .btn {
     display: inline-block;
-    padding: 15px 30px;
-
-    background: linear-gradient(135deg, #6c63ff, #4f46e5);
-    color: white;
-
+    padding: 14px 30px;
     border: 2px solid #6c63ff;
     border-radius: 14px;
-
+    color: #fff;
+    background: linear-gradient(135deg, #6c63ff, #4f46e5);
     font-size: 17px;
-    cursor: pointer;
-    transition: 0.3s;
     text-align: center;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease,
+                background 0.25s ease, color 0.25s ease;
 }
 
 .btn:hover {
@@ -188,70 +199,66 @@ a {
 }
 
 .btn.outline {
-    background: transparent;
     color: #6c63ff;
+    background: transparent;
 }
 
 .btn.outline:hover {
+    color: #fff;
     background: #6c63ff;
-    color: white;
 }
 
-/* =====================================
-   ABOUT SECTION
-===================================== */
-
+/* 5. ABOUT SECTION
+--------------------------------------------------------- */
 .about-section {
-    max-width: 1100px;
     width: 90%;
+    max-width: 1100px;
     margin: 80px auto;
     padding: 60px;
-
-    background: white;
     border-radius: 25px;
-
+    background: #fff;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
 .about-section h1 {
-    text-align: center;
-    font-size: 48px;
-    color: #20195f;
     margin-bottom: 40px;
+    color: #20195f;
+    font-size: 48px;
+    text-align: center;
 }
 
 .about-section h2 {
+    margin: 30px 0 15px;
     color: #4338ca;
     font-size: 30px;
-    margin: 30px 0 15px;
 }
 
 .about-section p,
 .about-section li {
+    color: #444;
     font-size: 18px;
     line-height: 1.9;
-    color: #444;
 }
 
 .about-section ul {
     padding-left: 25px;
 }
 
-/* =====================================
-   SKILLS
-===================================== */
-
-.skills-section {
-    padding: 80px 8%;
-}
-
+/* 6. SECTION HEADINGS
+--------------------------------------------------------- */
 .skills-section h1,
 .projects-section h1,
 .contact-section h1 {
-    font-size: 48px;
-    color: #352c7d;
-    text-align: center;
     margin-bottom: 45px;
+    color: #352c7d;
+    font-size: 48px;
+    text-align: center;
+}
+
+/* 7. SKILLS SECTION
+--------------------------------------------------------- */
+.skills-section {
+    padding: 80px 8%;
 }
 
 .skills-grid {
@@ -261,11 +268,11 @@ a {
 }
 
 .skill-card {
-    background: #ececf5;
     padding: 30px;
-    border-radius: 20px;
     border-left: 5px solid #6c63ff;
-    transition: 0.3s;
+    border-radius: 20px;
+    background: #ececf5;
+    transition: transform 0.3s ease;
 }
 
 .skill-card:hover {
@@ -273,8 +280,8 @@ a {
 }
 
 .skill-card h3 {
-    font-size: 23px;
     margin-bottom: 15px;
+    font-size: 23px;
 }
 
 .skill-card p {
@@ -282,19 +289,17 @@ a {
     line-height: 1.7;
 }
 
-/* =====================================
-   PROJECTS
-===================================== */
-
+/* 8. PROJECTS SECTION
+--------------------------------------------------------- */
 .projects-section {
     padding: 80px 8%;
 }
 
 .projects-section > p {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
     margin-bottom: 40px;
+    color: #666;
+    font-size: 18px;
+    text-align: center;
 }
 
 #github-projects {
@@ -306,14 +311,11 @@ a {
 .project-card {
     min-width: 0;
     padding: 30px;
-
-    background: linear-gradient(135deg, #f4f5ff, #e6e9ff);
-    border-radius: 20px;
-
-    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.10);
-    transition: 0.3s;
-
     overflow-wrap: anywhere;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f4f5ff, #e6e9ff);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.10);
+    transition: transform 0.3s ease;
 }
 
 .project-card:hover {
@@ -321,34 +323,33 @@ a {
 }
 
 .project-card h3 {
-    font-size: 23px;
     margin-bottom: 15px;
+    font-size: 23px;
 }
 
 .project-card p {
+    margin-bottom: 15px;
     font-size: 16px;
     line-height: 1.7;
-    margin-bottom: 15px;
 }
 
-/* =====================================
-   CONTACT
-===================================== */
-
+/* 9. CONTACT SECTION
+--------------------------------------------------------- */
 .contact-section {
     padding: 80px 8%;
 }
 
 .contact-section > p {
-    text-align: center;
+    margin-bottom: 35px;
     font-size: 18px;
     line-height: 1.7;
-    margin-bottom: 35px;
+    text-align: center;
 }
 
 #contactForm {
+    width: 100%;
     max-width: 750px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .group {
@@ -356,48 +357,41 @@ a {
     gap: 20px;
 }
 
-input,
-textarea {
+#contactForm input,
+#contactForm textarea {
     width: 100%;
-    padding: 16px;
-
     margin-bottom: 20px;
-
+    padding: 16px;
     border: 1px solid #ddd;
     border-radius: 12px;
-
     outline: none;
+    background: #fff;
     font-size: 16px;
-    font-family: inherit;
 }
 
-input:focus,
-textarea:focus {
+#contactForm input:focus,
+#contactForm textarea:focus {
     border-color: #6c63ff;
     box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12);
 }
 
-textarea {
+#contactForm textarea {
     min-height: 160px;
     resize: vertical;
 }
 
-/* =====================================
-   FOOTER
-===================================== */
-
+/* 10. FOOTER
+--------------------------------------------------------- */
 footer {
-    background: #130c29;
-    color: white;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-
-    gap: 35px;
-    padding: 60px 8%;
     margin-top: 60px;
+    padding: 60px 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 35px;
+    color: #fff;
+    background: #130c29;
 }
 
 .footer-left {
@@ -405,14 +399,15 @@ footer {
 }
 
 .footer-left h2 {
-    font-size: 28px;
     margin-bottom: 18px;
+    color: #fff;
+    font-size: 28px;
 }
 
 .footer-left p {
+    margin-bottom: 12px;
     color: #d1d5db;
     line-height: 1.8;
-    margin-bottom: 12px;
 }
 
 .copyright {
@@ -421,8 +416,8 @@ footer {
 }
 
 .footer-right h3 {
-    font-size: 24px;
     margin-bottom: 20px;
+    font-size: 24px;
 }
 
 .social-icons {
@@ -433,17 +428,14 @@ footer {
 .social-icons a {
     width: 55px;
     height: 55px;
-
     display: flex;
-    justify-content: center;
     align-items: center;
-
-    background: rgba(255, 255, 255, 0.1);
+    justify-content: center;
     border-radius: 50%;
-
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
     font-size: 27px;
-    color: white;
-    transition: 0.3s;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .social-icons a:hover {
@@ -451,14 +443,12 @@ footer {
     background: #6c63ff;
 }
 
-/* =====================================
-   TABLET RESPONSIVENESS
-===================================== */
-
+/* 11. TABLET LAYOUT
+--------------------------------------------------------- */
 @media (max-width: 1024px) {
-
     .navbar {
-        padding: 15px 5%;
+        padding-right: 5%;
+        padding-left: 5%;
     }
 
     .nav-links {
@@ -466,83 +456,57 @@ footer {
     }
 
     .hero-section {
-        padding: 60px 5%;
+        padding-right: 5%;
+        padding-left: 5%;
         gap: 35px;
     }
 
     .hero-content h1 {
-        font-size: 45px;
+        font-size: clamp(38px, 5vw, 48px);
     }
 
     .hero-content p {
         font-size: 18px;
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
+    .skills-grid,
     #github-projects {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
-/* =====================================
-   MOBILE NAVIGATION
-===================================== */
-
-@media (max-width: 991px) {
-
+/* 12. MOBILE NAVIGATION AND TABLET HERO
+--------------------------------------------------------- */
+@media (max-width: 900px) {
     .menu-btn {
-        display: flex;
+        position: relative;
+        z-index: 1003;
+        display: inline-flex;
         align-items: center;
         justify-content: center;
-
-        width: 45px;
-        height: 45px;
-
-        background: transparent;
-        border: none;
-
-        font-size: 30px;
-        color: #111827;
-
-        cursor: pointer;
-        z-index: 1003;
     }
 
     .nav-links {
         position: fixed;
         top: 0;
         right: 0;
-
+        z-index: 1002;
         width: min(340px, 85vw);
+        height: 100vh;
         height: 100dvh;
-
-        padding: 35px 25px;
-
-        background: white;
-
+        padding: 100px 25px 35px;
         display: flex;
         flex-direction: column;
         align-items: stretch;
         justify-content: flex-start;
-
-        gap: 0;
-        list-style: none;
-
+        gap: 8px;
         overflow-y: auto;
-
+        background: #fff;
+        box-shadow: -12px 0 35px rgba(0, 0, 0, 0.14);
         transform: translateX(110%);
         visibility: hidden;
         pointer-events: none;
-
-        transition: transform 0.35s ease,
-                    visibility 0.35s ease;
-
-        z-index: 1002;
-
-        box-shadow: -10px 0 35px rgba(0, 0, 0, 0.12);
+        transition: transform 0.3s ease, visibility 0.3s ease;
     }
 
     .nav-links.active {
@@ -551,65 +515,28 @@ footer {
         pointer-events: auto;
     }
 
-    .nav-links li:not(.mobile-close) {
+    .nav-links li {
         width: 100%;
         text-align: center;
     }
 
-    .nav-links li a {
+    .nav-links a {
         display: block;
         width: 100%;
-        padding: 18px 10px;
-        font-size: 19px;
+        padding: 16px 10px;
+        font-size: 18px;
     }
 
-    .mobile-close {
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 25px;
-    }
-
-    #closeMenu {
-        width: 42px;
-        height: 42px;
-
-        background: #f1f1f8;
-        border: none;
-        border-radius: 50%;
-
-        font-size: 30px;
-        cursor: pointer;
-        color: #222;
-    }
-
-    .nav-overlay {
-        display: block;
-
-        position: fixed;
-        inset: 0;
-
-        background: rgba(0, 0, 0, 0.45);
-
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-
-        transition: 0.3s;
-        z-index: 1001;
-    }
-
-    .nav-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
+    .nav-links .resume-btn {
+        margin-top: 8px;
     }
 
     .hero-section {
         min-height: auto;
+        padding: 60px 6%;
         flex-direction: column-reverse;
-        text-align: center;
-        padding: 65px 6%;
         gap: 35px;
+        text-align: center;
     }
 
     .hero-content {
@@ -617,11 +544,15 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: clamp(35px, 6vw, 48px);
+        font-size: clamp(36px, 6vw, 48px);
+    }
+
+    .hero-content p {
+        font-size: 18px;
     }
 
     .hero-image img {
-        width: 300px;
+        width: min(300px, 75vw);
     }
 
     .hero-buttons {
@@ -633,8 +564,8 @@ footer {
     }
 
     footer {
-        text-align: center;
         flex-direction: column;
+        text-align: center;
     }
 
     .social-icons {
@@ -642,11 +573,12 @@ footer {
     }
 }
 
-/* =====================================
-   SMALL MOBILE
-===================================== */
-
+/* 13. SMALL MOBILE
+--------------------------------------------------------- */
 @media (max-width: 600px) {
+    html {
+        scroll-padding-top: 75px;
+    }
 
     .navbar {
         min-height: 70px;
@@ -654,7 +586,7 @@ footer {
     }
 
     .logo h2 {
-        font-size: clamp(17px, 4.5vw, 23px);
+        font-size: clamp(16px, 4.5vw, 22px);
     }
 
     .hero-section {
@@ -662,7 +594,7 @@ footer {
     }
 
     .hero-content h1 {
-        font-size: 36px;
+        font-size: clamp(32px, 8vw, 38px);
     }
 
     .hero-content p {
@@ -670,7 +602,7 @@ footer {
     }
 
     .hero-image img {
-        width: min(270px, 80vw);
+        width: min(270px, 75vw);
     }
 
     .hero-buttons {
@@ -734,17 +666,15 @@ footer {
     }
 }
 
-/* =====================================
-   REDUCED MOTION ACCESSIBILITY
-===================================== */
-
+/* 14. ACCESSIBILITY: REDUCED MOTION
+--------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
         scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
