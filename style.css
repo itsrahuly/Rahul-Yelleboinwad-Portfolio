@@ -480,7 +480,7 @@ footer {
 @media (max-width: 900px) {
     .menu-btn {
         position: relative;
-        z-index: 1003;
+        z-index: 1001;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -841,15 +841,11 @@ textarea:focus-visible {
 
 }
 
-/* Hide hamburger button when mobile navigation is open */
+/* Hide hamburger when mobile navigation is open */
 @media (max-width: 900px) {
-    body.menu-open .menu-btn {
+    body:has(.nav-links.active) .menu-btn {
         display: none !important;
-    }
-
-    /* Keep close button visible inside navigation */
-    body.menu-open .close-menu-btn {
-        display: flex !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 }
-
